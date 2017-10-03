@@ -1,0 +1,21 @@
+<html>
+
+<head>
+  <script>
+    function init() {
+      var b = document.querySelector("#myButton");
+      b.addEventListener('click', function(evt) {
+        alert("Button clicked");
+      });
+    }
+    window.onkeydown = function(evt) {
+      console.log("key = " + evt.key);
+    }
+  </script>
+</head>
+
+<body onload="init();">
+  <button id="myButton">Click me!</button>
+</body>
+
+</html>
