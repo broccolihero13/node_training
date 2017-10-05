@@ -17,7 +17,7 @@ let weather = (lat, lng, cb)=>{
         cb(undefined, {
           temperature: body.currently.temperature,
           humidity: body.currently.humidity,
-          forcast: body.currently.icon,
+          forcast: body.currently.icon.replace(/-/g, ' '),
           apparentTemperature: body.currently.apparentTemperature
         });
       }
