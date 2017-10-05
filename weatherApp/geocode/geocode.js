@@ -11,7 +11,7 @@ let geocodeAddress = (address, cb) => {
         cb(`Could not reach Google servers: ${error}`)
       } else if (response.statusCode != "200") {
         cb(`Something went wrong with the API call, it returned with a ${response.statusCode} status code.`)
-      } else if(body.status.indexOf("ZERO_RESULTS") > -1){
+      } else if(body.status.indexOf("ZERO") > -1){
         cb(`Invalid search. ${addressToFind} did not turn up any results or was ill formatted.`)
       } else {
         cb(undefined, {
