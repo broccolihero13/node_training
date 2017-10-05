@@ -24,7 +24,9 @@ let geocodeAddress = (address, cb) => {
     
 }
 
+
 //This allows the geocodeAddress to be exported and part of the app.js require statement
-module.exports = {
-    geocodeAddress
-};
+// module.exports = {
+//     geocodeAddress
+// };
+module.exports.geocodeAddress = geocodeAddress;
