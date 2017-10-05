@@ -1,4 +1,3 @@
-/*jshint esversion:6*/
 // console.log(global); - kind of like window
 // console.log(process); - kind of like document (not really)
 const simProc = () => {

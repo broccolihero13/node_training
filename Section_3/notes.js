@@ -1,4 +1,3 @@
-/*jshint esversion:6*/
 // console.log("Starting notes.js");
 /*modules.exports is a field that allows you to pull variables, functions and other objects out
 of a file. It essentially preps them to be called at another location.
