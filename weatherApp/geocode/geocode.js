@@ -1,6 +1,6 @@
 let req = require('request');
 
-let geocodeAddress = (address = "12345") => {
+let geocodeAddress = (address, cb) => {
     addressToFind = encodeURIComponent(address);
     
     req({
@@ -8,19 +8,23 @@ let geocodeAddress = (address = "12345") => {
       json: true
     }, (error, response, body) => {
       if(error){
-        console.log(`Could not reach Google servers: ${error}`)
+        cb(`Could not reach Google servers: ${error}`)
       } else if (response.statusCode != "200") {
-        console.log(`Something went wrong with the API call, it returned with a ${response.statusCode} status code.`)
+        cb(`Something went wrong with the API call, it returned with a ${response.statusCode} status code.`)
       } else if(body.status.indexOf("ZERO_RESULTS") > -1){
-        console.log(`Invalid search. ${addressToFind} did not turn up any results or was ill formatted.`)
+        cb(`Invalid search. ${addressToFind} did not turn up any results or was ill formatted.`)
       } else {
-        console.log(`Address: ${body.results[0].formatted_address}`);
-        console.log(`Latitude: ${body.results[0].geometry.location.lat}`);
-        console.log(`Longitude: ${body.results[0].geometry.location.lng}`);  
+        cb(undefined, {
+          address: body.results[0].formatted_address,
+          lat: body.results[0].geometry.location.lat,
+          lng: body.results[0].geometry.location.lng
+        });
       }
     });
     
 }
+
+//This allows the geocodeAddress to be exported and part of the app.js require statement
 module.exports = {
     geocodeAddress
 };
