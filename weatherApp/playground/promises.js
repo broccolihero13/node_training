@@ -1,4 +1,4 @@
-let promiseWork = false;
+let promiseWork = true;
 let somePromise = new Promise((resolve, reject) => {
     setTimeout(()=>{
         if(promiseWork){
