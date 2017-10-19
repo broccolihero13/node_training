@@ -1,12 +1,30 @@
 const express = require('express');
+const hbs = require('hbs');
 
 let app = express();
+let currentUser = "James Bond";
 
+app.set("view engine", "hbs");
 app.use(express.static(__dirname + '/public'));
 
+let homePageValues = {
+  title: "Home Page",
+  year: new Date().getFullYear(),
+  author: "Brock Halladay",
+  welcomeMessage: `Hello, ${currentUser}, welcome to this express app`
+}
 app.get('/', (request, response)=>{
-  response.send("Hello Express");
+  response.render('home.hbs', homePageValues);
 });
+
+let aboutPageValues = {
+  title: "About Page",
+  year: new Date().getFullYear(),
+  author: "Brock Halladay"
+}
+app.get('/about', (request, response)=>{
+  response.render('about.hbs', aboutPageValues);
+})
 
 app.get('/brocktest', (request, response)=>{
   response.send({
