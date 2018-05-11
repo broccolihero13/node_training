@@ -15,12 +15,21 @@ MongoClient.connect('mongodb://localhost:27017/toDoApp', (err,client)=>{
   //   console.log(JSON.stringify(result.ops,undefined,2));
   // });
 
-  db.collection('Users').insertOne({name: "Brock Halladay", age: 30, location: "Took the midnight train going anywhere"},(err,result)=>{
-    if(err){
-      return console.log("somethingwentwrong");
-    }
-    console.log(JSON.stringify(result.ops, undefined, 2));
-  })
+  //Create to set an id
+  // db.collection('Users').insertOne({_id: "1234567", name: "Casey Rowley", age: 28, location: "Paradise City"},(err,result)=>{
+  //   if(err){
+  //     return console.log("somethingwentwrong");
+  //   }
+  //   console.log(JSON.stringify(result.ops, undefined, 2));
+  // });
+  
+  // //Get the time stamp at creation of record
+  // db.collection('Users').insertOne({name: "Rose Halladay", age: 29, location: "Took the Midnight traing going anywhere"},(err,result)=>{
+  //   if(err){
+  //     return console.log("somethingwentwrong");
+  //   }
+  //   console.log(result.ops[0]._id.getTimestamp());
+  // });
 
   client.close();
 });
