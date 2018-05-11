@@ -1,4 +1,9 @@
-const MongoClient = require('mongodb').MongoClient;
+const {MongoClient, ObjectID} = require('mongodb').MongoClient;
+
+// Destructuring
+// var user = {name: 'Aurora', age: '21'};
+// var {name} = user;
+// console.log(name);
 
 MongoClient.connect('mongodb://localhost:27017/toDoApp', (err,client)=>{
   if(err){
