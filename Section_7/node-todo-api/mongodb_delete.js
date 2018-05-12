@@ -28,12 +28,5 @@ MongoClient.connect('mongodb://localhost:27017/toDoApp', (err,client)=>{
   //   console.log(err);
   // });
 
-
-  const db = client.db('toDoApp');
-  db.collection('Users').findOneAndUpdate({name: "Rose Halladay"}, {name: "Thorn", age: 28}).then((result)=>{
-    console.log(result);
-  }).catch((err)=>{
-    console.log(err);
-  });
   // client.close();
 });
