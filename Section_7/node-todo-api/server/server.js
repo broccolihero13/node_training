@@ -1,58 +1,27 @@
-const mongoose = require('mongoose');
+const express = require('express');
+const bodyParser = require('body-parser');
 
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/TodoApp');
+const {mongoose} = require('./db/mongoose');
+const {Todo} = require('./models/todo');
+const {User} = require('./models/user');
 
-//save something new
+let app = express();
 
-// let Todo = mongoose.model('Todo', {
-//   text: {
-//     required: true,
-//     type: String,
-//     minlength: 1,
-//     trim: true //get rid of any leading and trailing white space
-//   },
-//   status: {
-//     required: true,
-//     type: String,
-//     default: "Open"
-//   },
-//   completedAt: {
-//     type: Date,
-//     default: null
-//   }
-// });
+app.use(bodyParser.json());
 
-// let newTodo = new Todo({
-//   text: "        Yes     You      Can         ",
-// });
-
-// newTodo.save().then((msg)=>{
-//   console.log(`Saved Todo: ${msg}`);
-// }).catch((err)=>{console.log(err)});
-
-let User = mongoose.model('Users', {
-  username: {
-    required: true,
-    type: String,
-    minlength: 3,
-    trim: true
-  }, email: {
-    required: true,
-    trim: true,
-    minlength: 1,
-    type: String
-  }, password: {
-    required: false,
-    type: String
-  }
+app.post('/todos', (req,res)=>{
+  let todo = new Todo({
+    text: req.body.text,
+    status: req.body.status,
+    completedAt: req.body.status === "completed" ? new Date() : null
+  });
+  todo.save().then((doc)=>{
+    res.send(doc);
+  }).catch((err)=>{
+    res.status(400).send(err);
+  })
 });
 
-let newUser = new User({
-  username: "brock_o_lee",
-  email: "abc"
+app.listen(3000, ()=>{
+  console.log(`Started listening on port 3000`);
 });
-
-newUser.save().then((msg)=>{
-  console.log(`Saved User ${msg}`);
-}).catch((err)=>{console.log(err)});
